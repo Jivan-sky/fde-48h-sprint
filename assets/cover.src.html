@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<!-- fde-48h-sprint · 封面 · FDE 初级开发手册 · 2400x1350
+     视觉:苹果液态玻璃 —— 圆体标题 + 柔光镜面 + 大圆角,无霓虹色散
+     渲染:msedge --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=2400,1350 --screenshot=cover.png cover.src.html
+     小图:--force-device-scale-factor=0.6667 --window-size=2400,1350 -> 1600x900 -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:2400px;height:1350px;overflow:hidden;background:#010208}
+.stage{position:relative;width:2400px;height:1350px;overflow:hidden;
+  font-family:'Noto Sans SC','Microsoft YaHei UI','Microsoft YaHei',sans-serif;
+  background:
+    radial-gradient(1240px 960px at 16% 12%, rgba(122,192,255,.42), transparent 64%),
+    radial-gradient(1040px 900px at 84% 6%,  rgba(180,152,255,.38), transparent 64%),
+    radial-gradient(900px 840px at 100% 62%,  rgba(255,152,192,.24), transparent 63%),
+    radial-gradient(1060px 820px at 44% 108%,rgba(255,198,142,.22), transparent 64%),
+    radial-gradient(780px 740px at 1% 88%,   rgba(142,240,220,.22), transparent 64%),
+    linear-gradient(162deg,#080c18 0%,#04060f 54%,#010208 100%)}
+/* 有机柔光:低饱和、大范围,不排成条 */
+.bloom{position:absolute;border-radius:50%;mix-blend-mode:screen;pointer-events:none}
+.b1{width:1240px;height:940px;left:-180px;top:100px;filter:blur(130px);
+  background:radial-gradient(closest-side,rgba(150,215,255,.42),transparent 72%)}
+.b2{width:1040px;height:860px;right:-140px;top:-140px;filter:blur(140px);
+  background:radial-gradient(closest-side,rgba(198,178,255,.40),transparent 72%)}
+.b3{width:920px;height:720px;right:-200px;top:540px;filter:blur(140px);
+  background:radial-gradient(closest-side,rgba(255,178,208,.28),transparent 72%)}
+.b4{width:1040px;height:640px;left:520px;bottom:-240px;filter:blur(140px);
+  background:radial-gradient(closest-side,rgba(255,212,164,.26),transparent 72%)}
+.b5{width:840px;height:720px;left:-240px;bottom:-160px;filter:blur(140px);
+  background:radial-gradient(closest-side,rgba(168,246,226,.26),transparent 72%)}
+.b6{width:920px;height:660px;left:880px;top:380px;filter:blur(150px);
+  background:radial-gradient(closest-side,rgba(160,196,255,.20),transparent 72%)}
+/* 整幅玻璃光泽:边缘出画 */
+.sheen{position:absolute;left:-90px;top:-90px;width:2580px;height:1530px;border-radius:150px;
+  background:linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.014) 44%,rgba(255,255,255,.03) 72%,rgba(255,255,255,.055));
+  box-shadow:inset 0 0 260px rgba(190,225,255,.10);pointer-events:none}
+/* 玻璃碎片:圆润一角 */
+.shard{position:absolute;pointer-events:none;border:1px solid rgba(255,255,255,.28);
+  background:linear-gradient(150deg,rgba(255,255,255,.15),rgba(255,255,255,.03) 56%,rgba(255,255,255,.08));
+  backdrop-filter:blur(28px) saturate(190%);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.75),inset 0 0 50px rgba(190,230,255,.12),0 46px 120px -30px rgba(0,0,0,.9)}
+.shA{width:360px;height:270px;right:-150px;top:-140px;border-radius:100px;transform:rotate(14deg)}
+.shB{width:320px;height:320px;left:-210px;bottom:-110px;border-radius:110px;transform:rotate(-17deg);opacity:.6}
+/* ── 版心 ── */
+.content{position:absolute;inset:0;padding:78px 96px;display:flex;flex-direction:column;z-index:2}
+.topline{display:flex;align-items:center;gap:18px;flex:none}
+.mono{font-family:'Cascadia Mono','Consolas',ui-monospace,monospace}
+.topline .lab{font-size:22px;font-weight:600;letter-spacing:.34em;color:#adbfdd;text-transform:uppercase}
+.topline .dot{width:10px;height:10px;border-radius:50%;background:#a6f0ff;box-shadow:0 0 26px 8px rgba(166,240,255,.85)}
+.topline .ver{margin-left:auto;font-size:21px;letter-spacing:.1em;color:#c0cfea;opacity:.85}
+.lockup{flex:none;margin-top:10px;display:block}
+h2{flex:none;margin-top:14px;font-size:35px;line-height:1.52;font-weight:300;color:#cfdcf0;max-width:1560px}
+h2 b{font-weight:600;color:#fff}
+h2 .q{color:#95a6c4}
+/* ── 分支 ── */
+.fork{position:relative;flex:none;height:470px;margin-top:auto}
+.fork svg.paths{position:absolute;inset:0;width:100%;height:100%}
+.orbwrap{position:absolute;left:0;top:0;width:340px;height:470px}
+.orb{position:absolute;left:118px;top:183px;width:104px;height:104px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ffffff,rgba(206,244,255,.94) 32%,rgba(150,206,255,.55) 62%,rgba(178,170,255,.32) 100%);
+  box-shadow:0 0 70px 22px rgba(158,226,255,.5),0 0 170px 62px rgba(160,170,255,.26),inset 0 0 24px rgba(255,255,255,.85)}
+.orbring{position:absolute;left:102px;top:167px;width:136px;height:136px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.40);background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.02));
+  backdrop-filter:blur(12px);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 22px 54px -18px rgba(0,0,0,.9)}
+.orbwrap .t1{position:absolute;left:0;top:330px;width:340px;text-align:center;font-size:30px;font-weight:600;color:#f0f6ff;letter-spacing:.02em}
+.orbwrap .t2{position:absolute;left:0;top:372px;width:340px;text-align:center;font-size:20px;font-weight:300;color:#9aabca;line-height:1.42}
+.ptag{position:absolute;font-size:23px;font-weight:600;letter-spacing:.08em}
+.ptag.a{left:452px;top:78px;color:#9df3d8}
+.ptag.b{left:520px;top:392px;color:#ffd0a0}
+/* 两块玻璃卡:大圆角、柔光,主次分明 */
+.gcard{position:absolute;overflow:hidden;backdrop-filter:blur(30px) saturate(190%)}
+.gcard .k{display:flex;align-items:baseline;gap:16px}
+.gcard .big{font-weight:600;color:#fff;line-height:1;letter-spacing:-.01em}
+.gcard .unit{color:#dbe8f8;font-weight:400}
+.gcard .ti{color:#f0f6ff;font-weight:600}
+.gcard .sm{color:#a8bad6;letter-spacing:.01em;font-weight:300}
+.cardA{left:1288px;top:34px;width:920px;height:172px;border-radius:52px;padding:28px 38px;
+  border:1px solid rgba(226,255,247,.40);
+  background:
+    linear-gradient(124deg,rgba(255,255,255,.19),rgba(255,255,255,.05) 48%,rgba(255,255,255,.03) 74%,rgba(255,255,255,.10)),
+    linear-gradient(124deg,rgba(150,246,222,.16),rgba(160,208,255,.10) 56%,rgba(206,178,255,.12));
+  box-shadow:0 0 0 1px rgba(180,255,235,.08),0 46px 130px -38px rgba(0,0,0,.95),
+    0 0 160px -50px rgba(140,240,214,.7),inset 0 2px 0 rgba(255,255,255,.80),inset 0 -1px 0 rgba(255,255,255,.12)}
+.cardA:before{content:'';position:absolute;left:9%;right:9%;top:2px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.75) 34%,rgba(255,255,255,.92) 52%,rgba(255,255,255,.72) 70%,transparent);filter:blur(1.6px)}
+.cardA:after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,transparent 34%,transparent 74%,rgba(255,255,255,.10) 100%)}
+.cardA .big{font-size:68px}
+.cardA .unit{font-size:27px}
+.cardA .sm{font-size:21px;margin-top:12px}
+.cardB{left:1508px;top:292px;width:700px;height:176px;border-radius:44px;padding:24px 32px;
+  border:1px solid rgba(255,232,208,.36);
+  background:
+    linear-gradient(124deg,rgba(255,255,255,.14),rgba(255,255,255,.035) 52%,rgba(255,255,255,.08)),
+    linear-gradient(124deg,rgba(255,208,164,.14),rgba(255,178,196,.07));
+  box-shadow:0 40px 104px -36px rgba(0,0,0,.95),0 0 130px -54px rgba(255,206,168,.6),inset 0 2px 0 rgba(255,255,255,.68)}
+.cardB:before{content:'';position:absolute;left:10%;right:10%;top:2px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,248,236,.7) 40%,rgba(255,255,255,.8) 58%,transparent);filter:blur(1.4px)}
+.cardB .big{font-size:44px}
+.cardB .ti{font-size:25px;margin-top:7px}
+.cardB .sm{font-size:19px;margin-top:7px}
+/* ── 页脚 ── */
+.foot{flex:none;margin-top:26px;display:flex;align-items:baseline;gap:14px;font-size:24px;font-weight:300;color:#93a4c2}
+.foot .m{font-family:'Cascadia Mono','Consolas',ui-monospace,monospace;font-size:26px;font-weight:700;color:#a8f2ff}
+.foot .sep{color:rgba(255,255,255,.22)}
+.foot .end{margin-left:auto;color:#8494b0;font-size:23px}
+.foot .end b{color:#d4e2f5;font-weight:600}
+.grain{position:absolute;inset:0;opacity:.12;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.6'/></svg>")}
+.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(132% 114% at 50% 46%,transparent 44%,rgba(0,0,0,.72) 100%)}
+</style></head>
+<body><div class="stage">
+  <div class="bloom b1"></div><div class="bloom b2"></div><div class="bloom b3"></div>
+  <div class="bloom b4"></div><div class="bloom b5"></div><div class="bloom b6"></div>
+  <div class="sheen"></div>
+  <div class="shard shA"></div><div class="shard shB"></div>
+
+  <div class="content">
+    <div class="topline"><span class="dot"></span><span class="lab">FDE Field Manual</span><span class="ver mono">初级 · v3.3</span></div>
+
+    <svg class="lockup" width="2208" height="320" viewBox="0 0 2208 320" style="overflow:visible">
+      <defs>
+        <filter id="fSoft" x="-30%" y="-70%" width="160%" height="280%"><feGaussianBlur stdDeviation="34"/></filter>
+        <filter id="fMid"  x="-30%" y="-80%" width="160%" height="300%"><feGaussianBlur stdDeviation="6"/></filter>
+        <filter id="fRing" x="-20%" y="-90%" width="140%" height="320%"><feGaussianBlur stdDeviation="7"/></filter>
+        <linearGradient id="gFace" x1="0" y1="20" x2="0" y2="285" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".70"/>
+          <stop offset=".30" stop-color="#f4f8ff" stop-opacity=".50"/>
+          <stop offset=".65" stop-color="#dfeafb" stop-opacity=".36"/>
+          <stop offset="1" stop-color="#c6d5ec" stop-opacity=".30"/>
+        </linearGradient>
+        <linearGradient id="gGloss" x1="0" y1="58" x2="0" y2="208" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset=".46" stop-color="#ffffff" stop-opacity=".42"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="gTint" x1="0" y1="210" x2="0" y2="292" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#8fc8ff" stop-opacity="0"/>
+          <stop offset="1" stop-color="#b9a8ff" stop-opacity=".22"/>
+        </linearGradient>
+        <linearGradient id="gTop" x1="0" y1="28" x2="0" y2="150" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".85"/>
+          <stop offset="1" stop-color="#e6f4ff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="gBot" x1="0" y1="228" x2="0" y2="286" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#bfe8ff" stop-opacity="0"/>
+          <stop offset="1" stop-color="#bfe8ff" stop-opacity=".60"/>
+        </linearGradient>
+        <g id="ttl" font-family="'Arial Rounded MT Bold','Noto Sans SC','Microsoft YaHei UI',sans-serif"><text x="0" y="224" font-size="268" letter-spacing="-2">fde-48h-sprint</text></g>
+        <clipPath id="clipAll"><text x="0" y="224" font-size="268" letter-spacing="-2" font-family="'Arial Rounded MT Bold','Noto Sans SC','Microsoft YaHei UI',sans-serif">fde-48h-sprint</text></clipPath>
+      </defs>
+
+      <use href="#ttl" y="22" fill="#010409" opacity=".38" filter="url(#fSoft)"/>
+      <use href="#ttl" x="-4" y="-3" fill="#8fe0ff" opacity=".22" filter="url(#fMid)"/>
+      <use href="#ttl" x="4" y="3" fill="#ffb0d8" opacity=".14" filter="url(#fMid)"/>
+      <use href="#ttl" fill="none" stroke="#d8f0ff" stroke-width="16" opacity=".26" filter="url(#fRing)"/>
+
+      <g clip-path="url(#clipAll)">
+        <rect x="-900" y="-40" width="4000" height="400" fill="url(#gFace)"/>
+        <rect x="-900" y="-40" width="4000" height="400" fill="url(#gGloss)"/>
+        <rect x="-900" y="196" width="4000" height="150" fill="url(#gTint)"/>
+      </g>
+
+      <use href="#ttl" fill="none" stroke="#ffffff" stroke-width="2.6" opacity=".72"/>
+      <use href="#ttl" fill="none" stroke="url(#gTop)" stroke-width="5" opacity=".60"/>
+      <use href="#ttl" fill="none" stroke="url(#gBot)" stroke-width="3" opacity=".55"/>
+    </svg>
+
+    <h2>一份 <b>FDE 初级开发手册</b> <span class="q">——</span> 48 小时驻场，敏捷做出一个 MVP 原型，让客户当场看到实际效果</h2>
+
+    <div class="fork">
+      <svg class="paths" viewBox="0 0 2208 470" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="mA" x1="170" y1="0" x2="1288" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#a6f7de"/><stop offset=".44" stop-color="#8fe6ff"/><stop offset="1" stop-color="#b6bcff"/>
+          </linearGradient>
+          <linearGradient id="mB" x1="170" y1="0" x2="1508" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ffdcae"/><stop offset=".48" stop-color="#ffc194"/><stop offset="1" stop-color="#ffa8bc"/>
+          </linearGradient>
+          <filter id="softline" x="-10%" y="-300%" width="120%" height="700%"><feGaussianBlur stdDeviation="11"/></filter>
+        </defs>
+        <path d="M170 235 C 470 235 560 120 1288 120" fill="none" stroke="#9df0d6" stroke-width="14" opacity=".24" filter="url(#softline)"/>
+        <path d="M170 235 C 470 235 560 120 1288 120" fill="none" stroke="url(#mA)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M170 235 C 520 235 640 380 1508 380" fill="none" stroke="#ffc8a0" stroke-width="14" opacity=".20" filter="url(#softline)"/>
+        <path d="M170 235 C 520 235 640 380 1508 380" fill="none" stroke="url(#mB)" stroke-width="2.8" stroke-linecap="round"/>
+      </svg>
+      <div class="orbwrap"><div class="orbring"></div><div class="orb"></div>
+        <div class="t1">客户意愿</div><div class="t2">由客户的消息与意愿决定</div></div>
+      <span class="ptag a">达成合作</span>
+      <span class="ptag b">未达成</span>
+
+      <div class="gcard cardA">
+        <div class="k"><span class="big">48 天</span><span class="unit">初步项目成就</span></div>
+        <div class="sm">达成合作 → 长期合作，可延伸到 48 个月 · 更大项目</div>
+      </div>
+      <div class="gcard cardB">
+        <div class="k"><span class="big">48 小时</span></div>
+        <div class="ti">交付 MVP 原型</div>
+        <div class="sm">客户看到实际效果；不行就撤，不硬续</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span class="m">48h</span><span>驻场做原型</span><span class="sep">/</span>
+      <span class="m">48d</span><span>初步成就</span><span class="sep">/</span>
+      <span class="m">48mo</span><span>更大项目</span>
+      <span class="end">走到哪一步，由<b>客户</b>决定</span>
+    </div>
+  </div>
+
+  <div class="grain"></div><div class="vig"></div>
+</div></body></html>
