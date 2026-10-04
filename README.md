@@ -81,7 +81,7 @@ Phase 0 先选一条,再开工:
 │   ├── opportunity-mining.md         # 文档采矿:六类线索 → 三张清单
 │   ├── question-framework.md         # 提问模板库 + E 组销售甄别
 │   ├── delivery-forms.md             # F1-F4 选型 + 停止条件
-│   └── handbook.md                   # 来源、用法、溯源(背景资料,不进阶段)
+│   └── handbook.md                   # 背景层:来源与溯源。仅当用户问溯源时读,执行 Phase 时一律不读
 └── examples/
     └── mcn-planbook/
         ├── 样例输入-需求文档.md

@@ -1,9 +1,9 @@
 ---
 name: fde-48h-sprint
-description: FDE 现场作业 Sprint（计划书驱动，v3.2）——接一份需求(文档/白皮书/纪要/口头),先选路线(默认 FDE 交付 / 可选 ANC 架构),再判客户层与一号位,采矿并建「问题模型」,辨真伪(Echo 甄别)、提炼机会点,设计薄切片交付物核心能力 + 交付形式,出计划书,过一号位沟通与 POC 一页纸,48h 内本人端到端下场验证,最后沉淀与换单。触发词:计划书、需求文档、接需求、真伪需求、机会点、薄切片、FDE、ANC、48h 计划、48h 冲刺、方案设计、帮我看这份需求文档、把需求做成东西、下场现场、客户分层、问题模型、一号位沟通、POC、试点、现场诊断、走哪条路。
+description: FDE 现场作业 Sprint（计划书驱动，v3.3）——接一份需求(文档/白皮书/纪要/口头),先选路线(默认 FDE 交付 / 可选 ANC 架构),再判客户层与一号位,采矿并建「问题模型」,辨真伪(Echo 甄别)、提炼机会点,设计薄切片交付物核心能力 + 交付形式,出计划书,过一号位沟通与 POC 一页纸,48h 内本人端到端下场验证,最后沉淀与换单。触发词:计划书、需求文档、接需求、真伪需求、机会点、薄切片、FDE、ANC、48h 计划、48h 冲刺、方案设计、帮我看这份需求文档、把需求做成东西、下场现场、客户分层、问题模型、一号位沟通、POC、试点、现场诊断、走哪条路。
 ---
 
-# fde-48h-sprint v3.2:FDE 现场作业 Sprint(选路 → 分层 → 问题模型 → 计划书 → POC → 48h → 沉淀)
+# fde-48h-sprint v3.3:FDE 现场作业 Sprint(选路 → 分层 → 问题模型 → 计划书 → POC → 48h → 沉淀)
 
 ## 你是谁
 
@@ -249,6 +249,9 @@ Sprint 结束**必须**做这三件事,否则这刀白砍:
 | 7 沟通 | `references/first-meeting.md` | 其余 references |
 | 8 Sprint | 本文件 + `references/field-discipline.md` | 其余 references |
 | 9 沉淀 | `references/field-discipline.md`;路线 B 加 `references/anc-context.md` | examples |
+| 背景(按需) | 仅当用户主动问「这 skill 从哪来 / 为什么这么设计」时:`references/handbook.md` | 执行任何 Phase 时一律不读 |
+
+**执行面 vs 背景面**:上表是执行面,按 Phase 放行;背景层只有 `references/handbook.md`(来源与版本手册),任何 Phase 都不读——只有用户主动问「这个 skill 从哪来」时才按需读它。
 
 ## 交付形式(F1-F4 速览)
 
