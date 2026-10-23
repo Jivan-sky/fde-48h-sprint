@@ -58,11 +58,11 @@
 - **和 web-capability-sniffer 的关系**：它是只读探查工具，产出系统地图/接口/权限/数据模型/风险/回滚预判和逐动作审计；本 skill 在 Phase 4/G3 按 `sniffer-handoff.md` 验收，不把探查结果当写许可。
 - **和知识库的关系**：不依赖它部署。但计划书的产物（采矿笔记、问题模型、真伪结论、沉淀资产）可以直接回写知识库。
 
-## 用法速查（v4 十二阶段）
+## 用法速查（v4.7 十二阶段）
 
 1. 用户说出触发词（计划书 / 需求文档 / 接需求 / 真伪需求 / 机会点 / 客户分层 / 问题模型 / 帮我看这份需求…） → 本 skill 载入。
 2. 先讲「对用户说」那段，对齐「不排施工计划，先判层、判真伪、定模式、定交付物」。
-3. Phase 0 前置（路线/模式/控制角色）→ Phase 1 客户分层与一号位 → Phase 2 采矿 + 问题模型 → Phase 3 提问（Echo 甄别）→ Phase 4 接口/数据/环境 + 可追溯回滚 → Phase 5 流程复刻 → Phase 6 收敛/重规划/三区 → Phase 7 计划书 + SOP → Phase 8 一号位沟通 & POC → Phase 9 代码/控制/写前基线 → Phase 10 校验 + 48h MVP + 三重验收 → Phase 11 沉淀/迭代。
+3. Phase 0 前置（路线/轨道/模式/控制角色）→ Phase 1 客户分层与一号位 → Phase 2 采矿 + 问题模型 → Phase 3 提问（Echo 甄别）→ Phase 4 接口/数据/环境 + 可追溯回滚 → Phase 5 流程复刻 → Phase 6 收敛/重规划/三区 → Phase 7 计划书 + SOP → Phase 8 一号位沟通 & POC → Phase 9 代码/控制/写前基线 → Phase 10 校验 + S/P 交付 + 三重验收 → Phase 11 沉淀/迭代。
 4. 每个阶段结束把关键信息写进 `planbook-state.md`；重启先读它续走。
 5. 计划书生成后 Phase 10 校验：红线复查 + 负面检查，任一命中停修。
 6. **计划书不是交付物，是开工单**——真正的产出是 Phase 10 当场验证过的 MVP，或 Phase 11 沉淀下来的资产，以及后续 M1-M4 的受控交付。
@@ -72,4 +72,4 @@
 - v1：48h 执行引擎。
 - v2：计划书指导老师（文档采矿 + 真伪辨别 + F1-F4）。
 - v3：加前段（客户分层 / 问题模型 / 一号位）与后段（沉淀 / 换单）；铁律 9 条；阶段 0-9。
-- **v4.6（当前）**：在 v4.5 上补齐“可回滚”的数据底座。阶段 0-11、铁律 16 条、G1-G6、M0-M4 不变。新增：逐对象 before-image/对象键映射、`operation_change_item`、新增/更新/删除三类补偿规则；写入门卡收敛为 25 项（写前 1-23、写后 24-25）；sniffer v1.2 精确 POST 白名单、独立登录会话例外、危险路径归一化与审计脱敏。v4.5 的回滚粒度、Agent 执行书继续有效。详见仓库根 `CHANGELOG.md`。
+- **v4.7（当前）**：新增双入口与组织变革层。S 轨道保留 48h Sprint；P 轨道用 E0 流程证据包起步，48 个工作日做一条业务线 pipeline，不在 48h 硬做原型。新增 `delivery-tracks.md`、`autonomy-ladder.md`、`org-transformation.md`，吸收 mission charter、orchestration chart、mission factory、mission P&L/生产力红利、talent/trust，并明确 accountable leader / mission DRI / process owner / builder / coach / control roles 的权责与冲突控制。v4.6 的写入门卡、回滚、sniffer 交接继续有效。详见仓库根 `CHANGELOG.md`。

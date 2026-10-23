@@ -4,6 +4,29 @@
 
 ---
 
+## v4.7 — 双入口与 human–agent 组织变革层（2026-10-23）
+
+### 这版修了什么
+
+v4.6 已把写入门卡、回滚粒度和 sniffer 交接收紧，但默认入口仍把“48h 做 MVP”当成所有客户的第一步。真实业务线改造往往需要先梳理端到端流程、确认 mission 与责任人，再在更长周期内建设 pipeline；此时 48h 硬做原型会把流程问题伪装成软件问题。
+
+同时，麦肯锡 *AI is changing work. Now it has to change the organization* 提供了组织变革语言：从 org chart 到 orchestration chart、mission factory、生产力红利去向、学徒阶梯与信任。但它不提供确定性运行时，也不替客户解决 DRI 授权、审计与法律责任。v4.7 把这些概念接到 ANC/FDE 的交付链上，而不是另起一套咨询框架。
+
+### 改动
+
+- `delivery-tracks.md`（新增）：S 48h Sprint / P 48 工作日 Pipeline 双入口；P 轨道 48h 默认交 E0 流程证据包（价值链、20 个真实案例、基线、任务清单、自主性阶梯、候选 mission、权限/审计缺口、48 天草案），不交软件原型；明确 48 个工作日约 9-10 周。
+- `autonomy-ladder.md`（新增）：规则 → 工作流/RPA → Skill → Agent → 纯人工的五级自主性阶梯；逐任务选最低充分复杂度；AI at the edge，deterministic core；例外队列必须有 owner、SLA、升级与反馈。
+- `org-transformation.md`（新增）：mission charter、orchestration chart、mission factory、mission P&L/生产力红利、talent/trust；校准“0 中层”误读，明确 4-6 人团队只是单案例信号；新增 sponsor / mission DRI / process owner / builder / coach / control roles 的权责表，防止 DRI 退化成新的项目经理层。
+- `SKILL.md`：升级 v4.7；Phase 0 增加轨道与角色选择；Phase 2/5/6/7/8/10/11 接入 P 轨道增量；计划书骨架补角色与决策权；校验红线增至 37 条；上下文预算、交付形式、落盘约定、进度行同步。
+- `README.md`、`handbook.md`、`anc-context.md`、`delivery-forms.md`、`delivery-roadmap.md`、`phase-checklist.md`：同步双入口、E0、四件事与角色决策权；保留原有 48h Sprint 和写入门卡。
+
+### 验证状态
+
+- 已验证：`python scripts\check_docs.py` 通过；`git diff --check` 通过（仅有 LF→CRLF 提示）。
+- 未验证：真实客户 48 个工作日 pipeline、组织采纳、mission P&L、DRI 授权与人才承接；不能声称已在生产或真实组织验证。
+
+---
+
 ## v4.6 — 可回滚的数据底座与 sniffer v1.2 对接(2026-10-22)
 
 ### 这版修了什么

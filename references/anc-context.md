@@ -74,7 +74,9 @@ ANC 把企业拆成可被 Agent 理解的结构:**Project(项目)/ DRI(直接负
 | Phase 8 沟通 | 「一点一面」:先给一点 Demo;全景图与 GO/HOLD/NO-GO 用 POC 一页纸承接 |
 | Phase 11 沉淀 | **把这次结果接回树干**:这条上下文、这个权限、这个 Skill、这条反馈,分别写回哪里 |
 
-## 八、维护口径(v4.6)
+## 八、维护口径(v4.7)
+
+P 轨道若选路线 B，把 pipeline 的编排图、任务清单、例外队列、eval、mission P&L 和角色与决策权接回 ANC 树干；**一人一 bot 是接口层，pipeline 是组织层**，不要把 P 轨道做成「一个全能 agent 包打整条流程」。组织变革方法见 `org-transformation.md`。
 
 - **不做独立载体。** ANC 作为本 skill 的**路线 B** 存在,与路线 A 平级、入口统一;不提前新建仓库或独立 skill。
 - **唯一维护源 = 本文件**(`references/anc-context.md`)。Agent 侧读 ANC,以此为准。
